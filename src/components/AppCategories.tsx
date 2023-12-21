@@ -16,7 +16,8 @@ const AppCategories = ({category} : {category: (data: string) => void}) => {
 
     useEffect(() => {
         category(selectedCategory);
-    }, [selectedCategory]);
+    }, [selectedCategory]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
     return (
         <div>

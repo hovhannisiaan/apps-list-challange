@@ -5,11 +5,9 @@ import {AppType} from "../customTypes";
 const AppList = ({data}: { data: AppType[] }) => {
     return (
         <ul>
-            {data.map((item: any) => {
+            {data.map((item: AppType) => {
                 return (
-                    <AppItem key={item.id} title={item.name} description={item.description}
-                             categories={item.categories} subscriptions={item.subscriptions}/>
-
+                    <AppItem key={item.id} app={item}/>
                 )
             })}
         </ul>

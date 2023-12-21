@@ -7,7 +7,7 @@ import AppList from "./components/AppList";
 function App() {
     const [data, setData] = useState<AppType[]>([]);
 
-    const pageSize:number = 3;
+    const pageSize: number = 3;
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     const [category, setCategory] = useState<string>('All');
@@ -33,12 +33,12 @@ function App() {
 
     // Pagination
 
-    const startIndex:number = (currentPage - 1) * pageSize;
-    const endIndex:number = startIndex + pageSize;
+    const startIndex: number = (currentPage - 1) * pageSize;
+    const endIndex: number = startIndex + pageSize;
 
-    const currentItems:AppType[] = data.slice(startIndex, endIndex);
+    const currentItems: AppType[] = data.slice(startIndex, endIndex);
 
-    const totalPages:number = Math.ceil(data.length / pageSize);
+    const totalPages: number = Math.ceil(data.length / pageSize);
 
     const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
@@ -48,10 +48,10 @@ function App() {
 
     const handleSearchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrentPage(1)
-        const searchTerm:string = event.target.value;
+        const searchTerm: string = event.target.value;
         setSearchTerm(searchTerm);
 
-        const filteredItems:AppType[] = await fetchAppByName(searchTerm, category);
+        const filteredItems: AppType[] = await fetchAppByName(searchTerm, category);
         setData(handleSortedApps(filteredItems));
     };
 
@@ -62,14 +62,12 @@ function App() {
     };
 
     const handleSortedApps = (data: AppType[]) => {
-        const sortedApps:AppType[] = data.sort((a, b) => {
+        return data.sort((a, b) => {
             const sumA = calculateSubscriptionSum(a);
             const sumB = calculateSubscriptionSum(b);
 
             return sumA - sumB;
         });
-
-        return sortedApps
     }
 
 
@@ -129,6 +127,6 @@ function App() {
             </div>
         </div>
     );
-};
+}
 
 export default App;
